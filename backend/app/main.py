@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import get_settings
-from app.routers import applications, jobs, me, routine
+from app.routers import account, applications, jobs, me, messages, resumes, routine
 
 app = FastAPI(title="Gap2Gain API", version="0.1.0")
 app.add_middleware(
@@ -10,7 +10,7 @@ app.add_middleware(
     allow_methods=["*"], allow_headers=["*"],
 )
 
-for r in (me, routine, jobs, applications):
+for r in (me, routine, jobs, applications, resumes, messages, account):
     app.include_router(r.router, prefix="/api/v1")
 
 
